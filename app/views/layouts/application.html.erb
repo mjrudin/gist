@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gist</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+    Current User: <%= current_user %>
+    Session Token: <%= session[:session_token] %>
+    <%= button_to "Logout", session_path, :method => "delete" %>
+
+  </nav>
+  <div class="errors">
+    <% flash[:errors].try(:each) do |error| %>
+      <%= error %>
+    <% end %>
+  </div>
+  <%= yield %>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div id="container">
+  <h1><%= @user.username %>'s Page </h1>
+
+  <div id="sidebar"></div>
+  <div id="content"></div>
+  <div class="clear-fix"></div>
+  </div>
+  <script type="application/json" id="bootstrapped-gists">
+    <%= @user.gists.to_json.html_safe %>
+  </script>
+
+  <script type="application/javascript">
+  $(document).ready(function () {
+    var gists = JSON.parse($("#bootstrapped-gists").html());
+
+    window.GA.initialize($("#sidebar"), $("#content"), gists);
+  })
+  </script>
+</div>
