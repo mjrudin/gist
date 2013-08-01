@@ -1,5 +1,6 @@
 GA.Views.GistShow = Backbone.View.extend({
 
+
   render: function () {
     var template = JST["gists/show"]({gist: this.model});
 
@@ -14,7 +15,8 @@ GA.Views.GistShow = Backbone.View.extend({
   },
   events: {
     "click .favorite-button" : "favorite",
-    "click .unfavorite-button" : "unfavorite"
+    "click .unfavorite-button" : "unfavorite",
+    "click a.new-gist-file": "renderGistFileForm"
   },
 
   favorite: function(event) {
@@ -40,6 +42,14 @@ GA.Views.GistShow = Backbone.View.extend({
         $(".favorite-buttons").toggleClass("favorited")
       }
     })
-  }
+  },
 
+  renderGistFileForm: function (event) {
+    console.log("hit render file form");
+    var form = new GA.Views.newGistFile({collection: this.model.get("gistFiles")})
+    var target = $(event.target);
+
+    target.before(form.render().el);
+    target.remove();
+  }
 })

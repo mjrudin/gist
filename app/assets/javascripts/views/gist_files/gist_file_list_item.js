@@ -16,7 +16,7 @@ GA.Views.GistFileListItem = Backbone.View.extend({
   },
 
   toggleBody: function (event) {
-    $(this.$el.children().first()).toggle("blind");
+    $(this.$el.children().first()).toggle("blind", "fast");
   }
 
 
